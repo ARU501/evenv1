@@ -111,6 +111,28 @@ const projectData = [
     location: 'Southern California',
     date: '2024',
     tag: 'Drainage · Hardscape'
+  },
+  {
+    title: 'Arched Double Gate',
+    before: 'images/gate-before.jpg',
+    after:  'images/gate-after.jpg',
+    beforeLabel: 'BEFORE',
+    afterLabel:  'AFTER',
+    desc: 'A complete custom gate build from bare steel frame to a stunning finished product. The double gate features a classic arched top, vertical wood planking, decorative bolt accents, solar lantern hardware, and a clean painted finish that complements the home exterior.',
+    location: 'Southern California',
+    date: '2024',
+    tag: 'Fence · Gate · Custom Build'
+  },
+  {
+    title: 'Gate — Final Finish',
+    before: 'images/gate-during.jpg',
+    after:  'images/gate-after.jpg',
+    beforeLabel: 'DURING',
+    afterLabel:  'AFTER',
+    desc: 'From freshly-paneled to fully finished — the final stage of this custom gate project. Solar lanterns, decorative bolt hardware, and a precision-cut arch crown the completed double gate for a high-end curb appeal upgrade.',
+    location: 'Southern California',
+    date: '2024',
+    tag: 'Fence · Gate · Finish Work'
   }
 ];
 
