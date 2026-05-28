@@ -133,6 +133,17 @@ const projectData = [
     location: 'Southern California',
     date: '2024',
     tag: 'Fence · Gate · Finish Work'
+  },
+  {
+    title: 'Kitchen Floor Replacement',
+    before: 'images/kitchen-before.jpg',
+    after:  'images/kitchen-after.jpg',
+    beforeLabel: 'BEFORE',
+    afterLabel:  'AFTER',
+    desc: 'Complete kitchen floor replacement — old octagon-pattern vinyl tile removed and replaced with stunning hardwood flooring. The warm wood tones completely modernize the kitchen and dining area, adding lasting value to the home.',
+    location: 'Southern California',
+    date: '2024',
+    tag: 'Flooring · Interior Renovation'
   }
 ];
 
