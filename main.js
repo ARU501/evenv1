@@ -1,264 +1,148 @@
-// ===========================
-// NAVBAR SCROLL
-// ===========================
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-});
+/* ============================================
+   EVEN2 — main.js
+============================================ */
 
-// ===========================
-// HAMBURGER MENU
-// ===========================
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
-});
-mobileMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => mobileMenu.classList.remove('open'));
-});
+// ── NAV ──────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
 
-// ===========================
-// FADE-UP OBSERVER
-// ===========================
-const observer = new IntersectionObserver(
-  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-  { threshold: 0.12 }
+const burger = document.getElementById('burger');
+const drawer = document.getElementById('drawer');
+burger.addEventListener('click', () => drawer.classList.toggle('open'));
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+// ── REVEAL ON SCROLL ─────────────────────────
+const ro = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+  { threshold: 0.1 }
 );
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-// ===========================
-// BEFORE/AFTER SLIDER
-// ===========================
-function initSlider(wrap) {
-  const beforeWrap = wrap.querySelector('.img-before-wrap');
-  const handle = wrap.querySelector('.slider-handle');
-  let dragging = false;
-
-  function setPosition(x) {
-    const rect = wrap.getBoundingClientRect();
-    let pct = ((x - rect.left) / rect.width) * 100;
-    pct = Math.min(Math.max(pct, 2), 98);
-    beforeWrap.style.width = pct + '%';
-    handle.style.left = pct + '%';
-  }
-
-  wrap.addEventListener('mousedown', e => { dragging = true; setPosition(e.clientX); });
-  wrap.addEventListener('touchstart', e => { dragging = true; setPosition(e.touches[0].clientX); }, { passive: true });
-
-  window.addEventListener('mousemove', e => { if (dragging) setPosition(e.clientX); });
-  window.addEventListener('touchmove', e => { if (dragging) setPosition(e.touches[0].clientX); }, { passive: true });
-
-  window.addEventListener('mouseup', () => { dragging = false; });
-  window.addEventListener('touchend', () => { dragging = false; });
-}
-
-// Init all sliders on page
-document.querySelectorAll('.slider-wrap').forEach(initSlider);
-
-// ===========================
-// FILTER BAR
-// ===========================
-document.querySelectorAll('.filter-btn').forEach(btn => {
+// ── FILTER ───────────────────────────────────
+document.querySelectorAll('.f').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.f').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    document.querySelectorAll('.project-card').forEach(card => {
-      const cats = card.dataset.category || '';
-      if (filter === 'all' || cats.includes(filter)) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
+    const f = btn.dataset.f;
+    document.querySelectorAll('.project').forEach(p => {
+      const cats = p.dataset.cat || '';
+      const show = f === 'all' || cats.split(' ').includes(f);
+      p.classList.toggle('hidden', !show);
     });
   });
 });
 
-// ===========================
-// MODAL
-// ===========================
-const projectData = [
-  {
-    title: 'Backyard Transformation',
-    before: 'images/before1.jpg',
-    after:  'images/after1.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'AFTER',
-    desc: 'A complete backyard overhaul — starting from bare, compacted dirt and transforming it into a lush, functional outdoor space. We installed a natural dry creek bed for drainage, fresh sod, drought-tolerant native plantings, and decorative river rock.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Landscaping · Drainage'
-  },
-  {
-    title: 'Sod & River Rock Install',
-    before: 'images/during1.jpg',
-    after:  'images/after1.jpg',
-    beforeLabel: 'DURING',
-    afterLabel:  'AFTER',
-    desc: 'Mid-project to finished result — fresh sod rolls being laid alongside a winding river rock creek bed. The final product is a clean, low-maintenance yard with excellent drainage and great curb appeal.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Sod · River Rock · Hardscape'
-  },
-  {
-    title: 'Creek Bed Drainage',
-    before: 'images/before1.jpg',
-    after:  'images/during1.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'DURING',
-    desc: 'Bare, ungraded dirt transformed into a properly sloped yard with a functional dry creek bed. The creek channels storm water naturally while adding a beautiful, landscape design feature.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Drainage · Hardscape'
-  },
-  {
-    title: 'Arched Double Gate',
-    before: 'images/gate-before.jpg',
-    after:  'images/gate-after.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'AFTER',
-    desc: 'A complete custom gate build from bare steel frame to a stunning finished product. The double gate features a classic arched top, vertical wood planking, decorative bolt accents, solar lantern hardware, and a clean painted finish that complements the home exterior.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Fence · Gate · Custom Build'
-  },
-  {
-    title: 'Gate — Final Finish',
-    before: 'images/gate-during.jpg',
-    after:  'images/gate-after.jpg',
-    beforeLabel: 'DURING',
-    afterLabel:  'AFTER',
-    desc: 'From freshly-paneled to fully finished — the final stage of this custom gate project. Solar lanterns, decorative bolt hardware, and a precision-cut arch crown the completed double gate for a high-end curb appeal upgrade.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Fence · Gate · Finish Work'
-  },
-  {
-    title: 'Kitchen Floor Replacement',
-    before: 'images/kitchen-before.jpg',
-    after:  'images/kitchen-after.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'AFTER',
-    desc: 'Complete kitchen floor replacement — old octagon-pattern vinyl tile removed and replaced with stunning hardwood flooring. The warm wood tones completely modernize the kitchen and dining area, adding lasting value to the home.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Flooring · Interior Renovation'
-  },
-  {
-    title: 'Concrete Slab Pour',
-    before: 'images/concrete-before.jpg',
-    after:  'images/concrete-after.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'AFTER',
-    desc: 'Scraggly grass and uneven dirt cleared and replaced with a professionally poured concrete slab. The finished pad provides a clean, durable foundation next to the shed — ideal for storage, work, or outdoor living.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Concrete · Hardscape'
-  },
-  {
-    title: 'Slab — Forms to Finish',
-    before: 'images/concrete-during.jpg',
-    after:  'images/concrete-after.jpg',
-    beforeLabel: 'DURING',
-    afterLabel:  'AFTER',
-    desc: 'Wood forms set and ground graded — then a smooth, trowel-finished concrete slab poured in a single day. A great example of proper site prep leading to a flawless final result.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Concrete · Pour · Hardscape'
-  },
-  {
-    title: 'Patio & Outdoor Kitchen',
-    before: 'images/patio-before.jpg',
-    after:  'images/patio-after.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'AFTER',
-    desc: 'Complete backyard patio overhaul — old cracked paver patio and fire pit removed, ground regraded, and a large concrete patio poured. Project included a custom-built outdoor kitchen island with built-in BBQ, mini fridge, storage drawers, and a hot tub pad.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Concrete · Outdoor Kitchen · BBQ Island'
-  },
-  {
-    title: 'Demo to Done',
-    before: 'images/patio-during1.jpg',
-    after:  'images/patio-after.jpg',
-    beforeLabel: 'DURING',
-    afterLabel:  'AFTER',
-    desc: 'Old pavers demolished, ground graded, and steel forms carefully set before a large-format concrete pour. The finished patio is smooth, level, and built to last — with room for an outdoor kitchen and hot tub.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Concrete · Patio · Demo'
-  },
-  {
-    title: 'Plan to Reality',
-    before: 'images/patio-during2.jpg',
-    after:  'images/patio-after.jpg',
-    beforeLabel: 'LAYOUT',
-    afterLabel:  'AFTER',
-    desc: 'Every great build starts with a plan — gas line routes, BBQ island footprint, and utility locations spray-painted directly on the graded dirt. That blueprint became a fully functional outdoor entertainment space complete with kitchen island and hot tub.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Outdoor Kitchen · BBQ · Planning'
-  }
+// ── SPOTLIGHT HOVER (dim siblings) ───────────
+document.querySelectorAll('.duo').forEach(duo => {
+  const panels = duo.querySelectorAll('.duo-panel');
+  panels.forEach(panel => {
+    panel.addEventListener('mouseenter', () => {
+      panels.forEach(p => p.classList.toggle('dimmed', p !== panel));
+    });
+    panel.addEventListener('mouseleave', () => {
+      panels.forEach(p => p.classList.remove('dimmed'));
+    });
+  });
+});
+
+// ── PROJECT DATA ──────────────────────────────
+const projects = [
+  { cat:'Landscaping · Drainage',    title:'Backyard Transformation',     before:'images/before1.jpg',         after:'images/after1.jpg',         lblB:'Before', lblA:'After',  desc:'Bare compacted dirt turned into a lush outdoor retreat — dry creek bed, river rock, sod, and drought-tolerant native plantings.' },
+  { cat:'Sod · River Rock',          title:'Sod & Rock Install',          before:'images/during1.jpg',         after:'images/after1.jpg',         lblB:'During', lblA:'After',  desc:'Mid-project to finished — fresh sod laid alongside a winding decorative river rock creek bed drainage channel.' },
+  { cat:'Drainage · Hardscape',      title:'Creek Bed Drainage',          before:'images/before1.jpg',         after:'images/during1.jpg',        lblB:'Before', lblA:'During', desc:'Ungraded bare dirt shaped and sloped — river rock creek bed channels storm water beautifully and naturally.' },
+  { cat:'Fence · Custom Gate',       title:'Arched Double Gate',          before:'images/gate-before.jpg',     after:'images/gate-after.jpg',     lblB:'Before', lblA:'After',  desc:'Raw steel frame and wood posts built into a stunning arched double gate — solar lanterns, decorative bolt hardware, and painted finish.' },
+  { cat:'Gate · Finish Work',        title:'Gate — Final Finish',         before:'images/gate-during.jpg',     after:'images/gate-after.jpg',     lblB:'During', lblA:'After',  desc:'From bare white panels installed at night to the fully painted and decorated gate — hardware, bolt accents, arch trim complete.' },
+  { cat:'Flooring · Interior',       title:'Kitchen Floor Replacement',   before:'images/kitchen-before.jpg',  after:'images/kitchen-after.jpg',  lblB:'Before', lblA:'After',  desc:'Dated octagon vinyl tile pulled out and replaced with beautiful warm hardwood flooring — a total kitchen modernization.' },
+  { cat:'Concrete · Hardscape',      title:'Concrete Slab Pour',          before:'images/concrete-before.jpg', after:'images/concrete-after.jpg', lblB:'Before', lblA:'After',  desc:'Overgrown grass and uneven dirt cleared, graded, formed, and poured into a clean durable concrete shed pad.' },
+  { cat:'Concrete · Pour',           title:'Forms to Finish',             before:'images/concrete-during.jpg', after:'images/concrete-after.jpg', lblB:'During', lblA:'After',  desc:'Ground graded and wood forms carefully set — then a smooth large-format slab trowel-finished to perfection in a single day.' },
+  { cat:'Concrete · Outdoor Kitchen',title:'Patio & Outdoor Kitchen',     before:'images/patio-before.jpg',    after:'images/patio-after.jpg',    lblB:'Before', lblA:'After',  desc:'Full patio overhaul — old cracked pavers removed, large concrete patio poured, custom BBQ island built with fridge and storage, plus hot tub pad.' },
+  { cat:'Concrete · Patio',          title:'Demo to Done',                before:'images/patio-during1.jpg',   after:'images/patio-after.jpg',    lblB:'During', lblA:'After',  desc:'Pavers demolished and forms set in the cleared dirt — then a fresh smooth concrete patio poured and finished for the new outdoor living space.' },
+  { cat:'Outdoor Kitchen · BBQ',     title:'Plan to Reality',             before:'images/patio-during2.jpg',   after:'images/patio-after.jpg',    lblB:'Layout', lblA:'After',  desc:'Gas line routes and BBQ island layout spray-painted on bare dirt — that blueprint became a fully equipped outdoor kitchen and entertainment area.' },
 ];
 
-function openModal(idx) {
-  const data = projectData[idx];
-  const modal = document.getElementById('modal');
-  const sliderWrap = document.getElementById('modalSliderWrap');
-  const info = document.getElementById('modalInfo');
+// ── LIGHTBOX ──────────────────────────────────
+let currentIdx = 0;
+const lb      = document.getElementById('lb');
+const lbSlide = document.getElementById('lbSlider');
+const lbMeta  = document.getElementById('lbMeta');
 
-  sliderWrap.innerHTML = `
-    <div class="slider-wrap" id="modalSlider">
-      <img class="img-after" src="${data.after}" alt="${data.afterLabel}" />
-      <div class="img-before-wrap">
-        <img class="img-before" src="${data.before}" alt="${data.beforeLabel}" />
-      </div>
-      <div class="slider-handle">
-        <div class="handle-line"></div>
-        <div class="handle-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </div>
-      </div>
-      <span class="label-before">${data.beforeLabel}</span>
-      <span class="label-after">${data.afterLabel}</span>
-    </div>
-  `;
-
-  info.innerHTML = `
-    <span style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.5rem;">${data.tag}</span>
-    <h3>${data.title}</h3>
-    <p style="margin:.75rem 0 1.25rem;">${data.desc}</p>
-    <div style="display:flex;gap:2rem;font-size:.82rem;color:var(--text-muted);">
-      <span>📍 ${data.location}</span>
-      <span>📅 ${data.date}</span>
-    </div>
-    <a href="#contact" style="display:inline-flex;margin-top:1.5rem;" class="btn btn-primary" onclick="closeModal()">Request a Quote →</a>
-  `;
-
-  initSlider(sliderWrap.querySelector('.slider-wrap'));
-  modal.classList.add('open');
+function openLB(idx) {
+  currentIdx = idx;
+  renderLB(idx);
+  lb.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
-function closeModal(event) {
-  if (event && event.target !== document.getElementById('modal') && !event.target.classList.contains('modal-close')) return;
-  document.getElementById('modal').classList.remove('open');
+function renderLB(idx) {
+  const p = projects[idx];
+  lbSlide.innerHTML = `
+    <img class="lb-after" src="${p.after}" alt="${p.lblA}"/>
+    <div class="lb-before-clip">
+      <img class="lb-before" src="${p.before}" alt="${p.lblB}"/>
+    </div>
+    <div class="lb-handle">
+      <div class="lb-line"></div>
+      <div class="lb-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+    <span class="lb-lbl-b">${p.lblB}</span>
+    <span class="lb-lbl-a">${p.lblA}</span>
+  `;
+  lbMeta.innerHTML = `
+    <p class="proj-cat">${p.cat}</p>
+    <h3>${p.title}</h3>
+    <p>${p.desc}</p>
+  `;
+  initSlider(lbSlide);
+}
+
+function closeLB() {
+  lb.classList.remove('open');
   document.body.style.overflow = '';
 }
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal({ target: document.getElementById('modal') });
-});
+function lbClickOutside(e) { if (e.target === lb) closeLB(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
 
-// ===========================
-// FORM SUBMIT
-// ===========================
-function handleSubmit(e) {
+function lbMove(dir) {
+  const visibleProjects = [...document.querySelectorAll('.project:not(.hidden)')];
+  const indices = visibleProjects.map(p => +p.dataset.idx);
+  const pos = indices.indexOf(currentIdx);
+  const next = indices[(pos + dir + indices.length) % indices.length];
+  currentIdx = next;
+  renderLB(next);
+}
+
+// ── DRAG SLIDER (inside LB) ───────────────────
+function initSlider(wrap) {
+  const clip   = wrap.querySelector('.lb-before-clip');
+  const handle = wrap.querySelector('.lb-handle');
+  if (!clip) return;
+  let drag = false;
+
+  function setPos(x) {
+    const r = wrap.getBoundingClientRect();
+    let pct = ((x - r.left) / r.width) * 100;
+    pct = Math.max(2, Math.min(98, pct));
+    clip.style.width   = pct + '%';
+    handle.style.left  = pct + '%';
+  }
+
+  wrap.addEventListener('mousedown',  e => { drag = true; setPos(e.clientX); });
+  wrap.addEventListener('touchstart', e => { drag = true; setPos(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('mousemove',  e => { if (drag) setPos(e.clientX); });
+  window.addEventListener('touchmove',  e => { if (drag) setPos(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('mouseup',  () => { drag = false; });
+  window.addEventListener('touchend', () => { drag = false; });
+}
+
+// ── FORM ──────────────────────────────────────
+function submitForm(e) {
   e.preventDefault();
-  const msg = document.getElementById('formMsg');
-  msg.textContent = '✓ Message sent! We\'ll be in touch within 24 hours.';
+  const msg = document.getElementById('cmsg');
+  msg.textContent = '✓ Message received! We\'ll be in touch within 24 hours.';
   e.target.reset();
-  setTimeout(() => { msg.textContent = ''; }, 6000);
+  setTimeout(() => msg.textContent = '', 6000);
 }
