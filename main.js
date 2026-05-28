@@ -144,6 +144,28 @@ const projectData = [
     location: 'Southern California',
     date: '2024',
     tag: 'Flooring · Interior Renovation'
+  },
+  {
+    title: 'Concrete Slab Pour',
+    before: 'images/concrete-before.jpg',
+    after:  'images/concrete-after.jpg',
+    beforeLabel: 'BEFORE',
+    afterLabel:  'AFTER',
+    desc: 'Scraggly grass and uneven dirt cleared and replaced with a professionally poured concrete slab. The finished pad provides a clean, durable foundation next to the shed — ideal for storage, work, or outdoor living.',
+    location: 'Southern California',
+    date: '2024',
+    tag: 'Concrete · Hardscape'
+  },
+  {
+    title: 'Slab — Forms to Finish',
+    before: 'images/concrete-during.jpg',
+    after:  'images/concrete-after.jpg',
+    beforeLabel: 'DURING',
+    afterLabel:  'AFTER',
+    desc: 'Wood forms set and ground graded — then a smooth, trowel-finished concrete slab poured in a single day. A great example of proper site prep leading to a flawless final result.',
+    location: 'Southern California',
+    date: '2024',
+    tag: 'Concrete · Pour · Hardscape'
   }
 ];
 
