@@ -166,6 +166,39 @@ const projectData = [
     location: 'Southern California',
     date: '2024',
     tag: 'Concrete · Pour · Hardscape'
+  },
+  {
+    title: 'Patio & Outdoor Kitchen',
+    before: 'images/patio-before.jpg',
+    after:  'images/patio-after.jpg',
+    beforeLabel: 'BEFORE',
+    afterLabel:  'AFTER',
+    desc: 'Complete backyard patio overhaul — old cracked paver patio and fire pit removed, ground regraded, and a large concrete patio poured. Project included a custom-built outdoor kitchen island with built-in BBQ, mini fridge, storage drawers, and a hot tub pad.',
+    location: 'Southern California',
+    date: '2024',
+    tag: 'Concrete · Outdoor Kitchen · BBQ Island'
+  },
+  {
+    title: 'Demo to Done',
+    before: 'images/patio-during1.jpg',
+    after:  'images/patio-after.jpg',
+    beforeLabel: 'DURING',
+    afterLabel:  'AFTER',
+    desc: 'Old pavers demolished, ground graded, and steel forms carefully set before a large-format concrete pour. The finished patio is smooth, level, and built to last — with room for an outdoor kitchen and hot tub.',
+    location: 'Southern California',
+    date: '2024',
+    tag: 'Concrete · Patio · Demo'
+  },
+  {
+    title: 'Plan to Reality',
+    before: 'images/patio-during2.jpg',
+    after:  'images/patio-after.jpg',
+    beforeLabel: 'LAYOUT',
+    afterLabel:  'AFTER',
+    desc: 'Every great build starts with a plan — gas line routes, BBQ island footprint, and utility locations spray-painted directly on the graded dirt. That blueprint became a fully functional outdoor entertainment space complete with kitchen island and hot tub.',
+    location: 'Southern California',
+    date: '2024',
+    tag: 'Outdoor Kitchen · BBQ · Planning'
   }
 ];
 
