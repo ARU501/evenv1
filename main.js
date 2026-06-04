@@ -1,264 +1,307 @@
-// ===========================
-// NAVBAR SCROLL
-// ===========================
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-});
+/* ============================================
+   EVEN6 — main.js
+   Hybrid ev4+ev5: auto-showcase + flip cards
+============================================ */
 
-// ===========================
-// HAMBURGER MENU
-// ===========================
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
-});
-mobileMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => mobileMenu.classList.remove('open'));
-});
-
-// ===========================
-// FADE-UP OBSERVER
-// ===========================
-const observer = new IntersectionObserver(
-  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-  { threshold: 0.12 }
-);
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-// ===========================
-// BEFORE/AFTER SLIDER
-// ===========================
-function initSlider(wrap) {
-  const beforeWrap = wrap.querySelector('.img-before-wrap');
-  const handle = wrap.querySelector('.slider-handle');
-  let dragging = false;
-
-  function setPosition(x) {
-    const rect = wrap.getBoundingClientRect();
-    let pct = ((x - rect.left) / rect.width) * 100;
-    pct = Math.min(Math.max(pct, 2), 98);
-    beforeWrap.style.width = pct + '%';
-    handle.style.left = pct + '%';
-  }
-
-  wrap.addEventListener('mousedown', e => { dragging = true; setPosition(e.clientX); });
-  wrap.addEventListener('touchstart', e => { dragging = true; setPosition(e.touches[0].clientX); }, { passive: true });
-
-  window.addEventListener('mousemove', e => { if (dragging) setPosition(e.clientX); });
-  window.addEventListener('touchmove', e => { if (dragging) setPosition(e.touches[0].clientX); }, { passive: true });
-
-  window.addEventListener('mouseup', () => { dragging = false; });
-  window.addEventListener('touchend', () => { dragging = false; });
-}
-
-// Init all sliders on page
-document.querySelectorAll('.slider-wrap').forEach(initSlider);
-
-// ===========================
-// FILTER BAR
-// ===========================
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    document.querySelectorAll('.project-card').forEach(card => {
-      const cats = card.dataset.category || '';
-      if (filter === 'all' || cats.includes(filter)) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  });
-});
-
-// ===========================
-// MODAL
-// ===========================
-const projectData = [
+// ── PROJECT DATA ──────────────────────────────
+const projects = [
   {
-    title: 'Backyard Transformation',
-    before: 'images/before1.jpg',
-    after:  'images/after1.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'AFTER',
-    desc: 'A complete backyard overhaul — starting from bare, compacted dirt and transforming it into a lush, functional outdoor space. We installed a natural dry creek bed for drainage, fresh sod, drought-tolerant native plantings, and decorative river rock.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Landscaping · Drainage'
+    num:'01', cat:'Landscaping · Drainage', title:'Backyard Transformation',
+    before:'images/before1.jpg',  after:'images/after1.jpg',
+    capB:'Bare compacted dirt — no drainage, no plants.',
+    capA:'Sod, river rock creek bed, drought-tolerant plantings.',
+    desc:'Bare compacted dirt turned into a lush outdoor retreat — dry creek bed for natural drainage, fresh sod, river rock, and drought-tolerant native plantings throughout.'
   },
   {
-    title: 'Sod & River Rock Install',
-    before: 'images/during1.jpg',
-    after:  'images/after1.jpg',
-    beforeLabel: 'DURING',
-    afterLabel:  'AFTER',
-    desc: 'Mid-project to finished result — fresh sod rolls being laid alongside a winding river rock creek bed. The final product is a clean, low-maintenance yard with excellent drainage and great curb appeal.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Sod · River Rock · Hardscape'
+    num:'02', cat:'Gates · Fencing', title:'Arched Double Gate',
+    before:'images/gate-before.jpg', after:'images/gate-after.jpg',
+    capB:'Raw steel frame and redwood posts — the skeleton.',
+    capA:'Painted arch, solar lanterns, decorative bolt hardware.',
+    desc:'A raw steel frame built into a stunning custom arched double gate — solar lanterns, decorative bolt hardware, precision-cut arch profile, and a professional painted finish.'
   },
   {
-    title: 'Creek Bed Drainage',
-    before: 'images/before1.jpg',
-    after:  'images/during1.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'DURING',
-    desc: 'Bare, ungraded dirt transformed into a properly sloped yard with a functional dry creek bed. The creek channels storm water naturally while adding a beautiful, landscape design feature.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Drainage · Hardscape'
+    num:'03', cat:'Flooring · Interior', title:'Kitchen Floor Replacement',
+    before:'images/kitchen-before.jpg', after:'images/kitchen-after.jpg',
+    capB:'Dated octagon-pattern vinyl tile throughout.',
+    capA:'Wide-plank hardwood — warm, modern, timeless.',
+    desc:'Outdated octagon vinyl tile completely removed and replaced with warm wide-plank hardwood flooring. A total kitchen modernization that adds lasting home value.'
   },
   {
-    title: 'Arched Double Gate',
-    before: 'images/gate-before.jpg',
-    after:  'images/gate-after.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'AFTER',
-    desc: 'A complete custom gate build from bare steel frame to a stunning finished product. The double gate features a classic arched top, vertical wood planking, decorative bolt accents, solar lantern hardware, and a clean painted finish that complements the home exterior.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Fence · Gate · Custom Build'
+    num:'04', cat:'Concrete · Hardscape', title:'Concrete Slab Pour',
+    before:'images/concrete-before.jpg', after:'images/concrete-after.jpg',
+    capB:'Uneven grass and dirt — no usable surface.',
+    capA:'Smooth trowel-finished slab. Graded, formed, poured in a day.',
+    desc:'Overgrown grass and uneven dirt cleared, graded, formed, and poured into a smooth durable concrete shed pad — finished in a single day.'
   },
   {
-    title: 'Gate — Final Finish',
-    before: 'images/gate-during.jpg',
-    after:  'images/gate-after.jpg',
-    beforeLabel: 'DURING',
-    afterLabel:  'AFTER',
-    desc: 'From freshly-paneled to fully finished — the final stage of this custom gate project. Solar lanterns, decorative bolt hardware, and a precision-cut arch crown the completed double gate for a high-end curb appeal upgrade.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Fence · Gate · Finish Work'
-  },
-  {
-    title: 'Kitchen Floor Replacement',
-    before: 'images/kitchen-before.jpg',
-    after:  'images/kitchen-after.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'AFTER',
-    desc: 'Complete kitchen floor replacement — old octagon-pattern vinyl tile removed and replaced with stunning hardwood flooring. The warm wood tones completely modernize the kitchen and dining area, adding lasting value to the home.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Flooring · Interior Renovation'
-  },
-  {
-    title: 'Concrete Slab Pour',
-    before: 'images/concrete-before.jpg',
-    after:  'images/concrete-after.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'AFTER',
-    desc: 'Scraggly grass and uneven dirt cleared and replaced with a professionally poured concrete slab. The finished pad provides a clean, durable foundation next to the shed — ideal for storage, work, or outdoor living.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Concrete · Hardscape'
-  },
-  {
-    title: 'Slab — Forms to Finish',
-    before: 'images/concrete-during.jpg',
-    after:  'images/concrete-after.jpg',
-    beforeLabel: 'DURING',
-    afterLabel:  'AFTER',
-    desc: 'Wood forms set and ground graded — then a smooth, trowel-finished concrete slab poured in a single day. A great example of proper site prep leading to a flawless final result.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Concrete · Pour · Hardscape'
-  },
-  {
-    title: 'Patio & Outdoor Kitchen',
-    before: 'images/patio-before.jpg',
-    after:  'images/patio-after.jpg',
-    beforeLabel: 'BEFORE',
-    afterLabel:  'AFTER',
-    desc: 'Complete backyard patio overhaul — old cracked paver patio and fire pit removed, ground regraded, and a large concrete patio poured. Project included a custom-built outdoor kitchen island with built-in BBQ, mini fridge, storage drawers, and a hot tub pad.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Concrete · Outdoor Kitchen · BBQ Island'
-  },
-  {
-    title: 'Demo to Done',
-    before: 'images/patio-during1.jpg',
-    after:  'images/patio-after.jpg',
-    beforeLabel: 'DURING',
-    afterLabel:  'AFTER',
-    desc: 'Old pavers demolished, ground graded, and steel forms carefully set before a large-format concrete pour. The finished patio is smooth, level, and built to last — with room for an outdoor kitchen and hot tub.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Concrete · Patio · Demo'
-  },
-  {
-    title: 'Plan to Reality',
-    before: 'images/patio-during2.jpg',
-    after:  'images/patio-after.jpg',
-    beforeLabel: 'LAYOUT',
-    afterLabel:  'AFTER',
-    desc: 'Every great build starts with a plan — gas line routes, BBQ island footprint, and utility locations spray-painted directly on the graded dirt. That blueprint became a fully functional outdoor entertainment space complete with kitchen island and hot tub.',
-    location: 'Southern California',
-    date: '2024',
-    tag: 'Outdoor Kitchen · BBQ · Planning'
+    num:'05', cat:'Concrete · Outdoor Living', title:'Patio & Outdoor Kitchen',
+    before:'images/patio-before.jpg', after:'images/patio-after.jpg',
+    capB:'Cracked paver patio — no kitchen, no hot tub pad.',
+    capA:'New concrete, custom BBQ island, mini fridge, hot tub pad.',
+    desc:'Old cracked pavers removed, large concrete patio poured, custom-built BBQ island with built-in grill, mini fridge, and storage. Plus a hot tub pad. Full backyard entertainment upgrade.'
   }
 ];
 
-function openModal(idx) {
-  const data = projectData[idx];
-  const modal = document.getElementById('modal');
-  const sliderWrap = document.getElementById('modalSliderWrap');
-  const info = document.getElementById('modalInfo');
+// ── NAV ───────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50));
+const burger = document.getElementById('burger');
+const drawer = document.getElementById('drawer');
+burger.addEventListener('click', () => drawer.classList.toggle('open'));
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
 
-  sliderWrap.innerHTML = `
-    <div class="slider-wrap" id="modalSlider">
-      <img class="img-after" src="${data.after}" alt="${data.afterLabel}" />
-      <div class="img-before-wrap">
-        <img class="img-before" src="${data.before}" alt="${data.beforeLabel}" />
-      </div>
-      <div class="slider-handle">
-        <div class="handle-line"></div>
-        <div class="handle-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </div>
-      </div>
-      <span class="label-before">${data.beforeLabel}</span>
-      <span class="label-after">${data.afterLabel}</span>
-    </div>
-  `;
+// ── SCROLL REVEAL ─────────────────────────────
+const ro = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+  { threshold: 0.1 }
+);
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-  info.innerHTML = `
-    <span style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.5rem;">${data.tag}</span>
-    <h3>${data.title}</h3>
-    <p style="margin:.75rem 0 1.25rem;">${data.desc}</p>
-    <div style="display:flex;gap:2rem;font-size:.82rem;color:var(--text-muted);">
-      <span>📍 ${data.location}</span>
-      <span>📅 ${data.date}</span>
-    </div>
-    <a href="#contact" style="display:inline-flex;margin-top:1.5rem;" class="btn btn-primary" onclick="closeModal()">Request a Quote →</a>
-  `;
+// ── COUNTER ANIMATION ─────────────────────────
+const counters = document.querySelectorAll('.counter');
+const cro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el  = e.target;
+    const end = +el.dataset.target;
+    const suf = el.closest('.sb-item').querySelector('span').textContent.replace(/[0-9]/g,'').trim();
+    let start = 0, dur = 1200, t0;
+    const tick = ts => {
+      if (!t0) t0 = ts;
+      const p = Math.min((ts - t0) / dur, 1);
+      el.textContent = Math.round(p * end) + (end === 5 ? '' : '+');
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    cro.unobserve(el);
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => cro.observe(c));
 
-  initSlider(sliderWrap.querySelector('.slider-wrap'));
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+/* ════════════════════════════════════════════
+   AUTO SHOWCASE
+════════════════════════════════════════════ */
+let scIdx     = 0;
+let scPhase   = 'before';   // 'before' | 'after'
+let scPaused  = false;
+let scTimer   = null;
+let scProg    = null;       // progress animation frame
+let scProgStart = null;
+let scProgDur = 2800;       // ms before-phase duration
+let scAfterDur = 2000;      // ms after-phase duration
+let hintDone  = new Set();
+let allFlipped = false;
+
+// DOM refs
+const scCard     = document.getElementById('scCard');
+const scBeforeImg = document.getElementById('scBeforeImg');
+const scAfterImg  = document.getElementById('scAfterImg');
+const scBeforeCap = document.getElementById('scBeforeCap');
+const scAfterCap  = document.getElementById('scAfterCap');
+const scNumEl    = document.getElementById('scNum');
+const scCatEl    = document.getElementById('scCat');
+const scTitleEl  = document.getElementById('scTitle');
+const scPhaseEl  = document.getElementById('scPhase');
+const scDescEl   = document.getElementById('scDesc');
+const scProgBar  = document.getElementById('scProgress');
+const playPauseBtn = document.getElementById('playPauseBtn');
+const playIcon   = document.getElementById('playIcon');
+const pauseIcon  = document.getElementById('pauseIcon');
+
+// Build showcase dots
+function buildScDots() {
+  const c = document.getElementById('scDots');
+  projects.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'sc-dot' + (i===0?' active':'');
+    b.addEventListener('click', () => { jumpToProject(i); });
+    c.appendChild(b);
+  });
 }
 
-function closeModal(event) {
-  if (event && event.target !== document.getElementById('modal') && !event.target.classList.contains('modal-close')) return;
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow = '';
+function updateScDots() {
+  document.querySelectorAll('.sc-dot').forEach((d,i) => d.classList.toggle('active', i===scIdx));
 }
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModal({ target: document.getElementById('modal') });
+function loadProject(idx, phase='before') {
+  const p = projects[idx];
+  scIdx   = idx;
+  scPhase = phase;
+
+  // Update labels
+  scNumEl.textContent   = p.num;
+  scCatEl.textContent   = p.cat;
+  scTitleEl.textContent = p.title;
+  scDescEl.textContent  = p.desc;
+
+  // Images & captions
+  scBeforeImg.src    = p.before;
+  scAfterImg.src     = p.after;
+  scBeforeCap.textContent = p.capB;
+  scAfterCap.textContent  = p.capA;
+
+  // Card face
+  if (phase === 'before') {
+    scCard.classList.remove('flipped');
+    scPhaseEl.className = 'sc-phase phase-b';
+    scPhaseEl.textContent = 'BEFORE';
+  } else {
+    scCard.classList.add('flipped');
+    scPhaseEl.className = 'sc-phase phase-a';
+    scPhaseEl.textContent = 'AFTER';
+  }
+
+  scNumEl.style.color = 'var(--border)';
+  setTimeout(() => scNumEl.style.color = 'var(--blue)', 50);
+
+  updateScDots();
+}
+
+// Progress bar animation
+function startProgress(duration, onComplete) {
+  cancelProgress();
+  scProgBar.style.transition = 'none';
+  scProgBar.style.width = '0%';
+  requestAnimationFrame(() => {
+    scProgBar.style.transition = `width ${duration}ms linear`;
+    scProgBar.style.width = '100%';
+  });
+  scTimer = setTimeout(onComplete, duration);
+}
+
+function cancelProgress() {
+  if (scTimer) clearTimeout(scTimer);
+  scTimer = null;
+  scProgBar.style.transition = 'none';
+  scProgBar.style.width = '0%';
+}
+
+function advanceShowcase() {
+  if (scPaused) return;
+
+  if (scPhase === 'before') {
+    // Flip to after
+    loadProject(scIdx, 'after');
+    startProgress(scAfterDur, () => {
+      // Advance to next project
+      const next = (scIdx + 1) % projects.length;
+      loadProject(next, 'before');
+      startProgress(scProgDur, advanceShowcase);
+    });
+  } else {
+    const next = (scIdx + 1) % projects.length;
+    loadProject(next, 'before');
+    startProgress(scProgDur, advanceShowcase);
+  }
+}
+
+function jumpToProject(idx) {
+  cancelProgress();
+  loadProject(idx, 'before');
+  if (!scPaused) startProgress(scProgDur, advanceShowcase);
+}
+
+// Play / Pause
+playPauseBtn.addEventListener('click', () => {
+  scPaused = !scPaused;
+  playIcon.classList.toggle('hidden', !scPaused);
+  pauseIcon.classList.toggle('hidden', scPaused);
+  if (scPaused) {
+    cancelProgress();
+  } else {
+    const dur = scPhase === 'before' ? scProgDur : scAfterDur;
+    startProgress(dur, advanceShowcase);
+  }
 });
 
-// ===========================
-// FORM SUBMIT
-// ===========================
-function handleSubmit(e) {
-  e.preventDefault();
-  const msg = document.getElementById('formMsg');
-  msg.textContent = '✓ Message sent! We\'ll be in touch within 24 hours.';
-  e.target.reset();
-  setTimeout(() => { msg.textContent = ''; }, 6000);
+document.getElementById('prevProject').addEventListener('click', () => {
+  cancelProgress();
+  const prev = (scIdx - 1 + projects.length) % projects.length;
+  loadProject(prev, 'before');
+  if (!scPaused) startProgress(scProgDur, advanceShowcase);
+});
+
+document.getElementById('nextProject').addEventListener('click', () => {
+  cancelProgress();
+  const next = (scIdx + 1) % projects.length;
+  loadProject(next, 'before');
+  if (!scPaused) startProgress(scProgDur, advanceShowcase);
+});
+
+// Pause on hover over showcase
+const stage = document.querySelector('.showcase-stage');
+stage.addEventListener('mouseenter', () => { if (!scPaused) cancelProgress(); });
+stage.addEventListener('mouseleave', () => {
+  if (!scPaused) {
+    const dur = scPhase === 'before' ? scProgDur : scAfterDur;
+    startProgress(dur, advanceShowcase);
+  }
+});
+
+// Click card to manually flip
+scCard.addEventListener('click', () => {
+  cancelProgress();
+  const newPhase = scPhase === 'before' ? 'after' : 'before';
+  loadProject(scIdx, newPhase);
+  const dur = newPhase === 'before' ? scProgDur : scAfterDur;
+  if (!scPaused) startProgress(dur, advanceShowcase);
+});
+
+/* ════════════════════════════════════════════
+   FLIP CARD GALLERY
+════════════════════════════════════════════ */
+function flipCard(card) {
+  card.classList.toggle('flipped');
+  updateFlipState();
 }
+
+function updateFlipState() {
+  const total   = document.querySelectorAll('.fc').length;
+  const flipped = document.querySelectorAll('.fc.flipped').length;
+  const stateEl = document.getElementById('flipState');
+  const btn     = document.getElementById('flipAllBtn');
+  if (flipped === 0)     { stateEl.textContent = 'Showing: Before'; btn.classList.remove('all-flipped'); allFlipped = false; }
+  else if (flipped === total) { stateEl.textContent = 'Showing: After';  btn.classList.add('all-flipped');    allFlipped = true; }
+  else                   { stateEl.textContent = `${flipped}/${total} flipped`; btn.classList.remove('all-flipped'); }
+}
+
+function flipAll() {
+  allFlipped = !allFlipped;
+  document.querySelectorAll('.fc').forEach((card, i) => {
+    setTimeout(() => {
+      if (allFlipped) card.classList.add('flipped');
+      else            card.classList.remove('flipped');
+    }, i * 100);
+  });
+  setTimeout(updateFlipState, document.querySelectorAll('.fc').length * 100 + 80);
+}
+
+// Hint shake on first hover
+document.querySelectorAll('.fc').forEach((card, i) => {
+  card.addEventListener('mouseenter', () => {
+    if (hintDone.has(i) || card.classList.contains('flipped')) return;
+    hintDone.add(i);
+    card.classList.add('hint');
+    card.addEventListener('animationend', () => card.classList.remove('hint'), { once: true });
+  });
+  card.setAttribute('tabindex','0');
+  card.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();flipCard(card);} });
+});
+
+// ── FORM ──────────────────────────────────────
+function submitForm(e) {
+  e.preventDefault();
+  const msg = document.getElementById('cmsg');
+  msg.textContent = '✓ Message received! We\'ll be in touch within 24 hours.';
+  e.target.reset();
+  setTimeout(() => msg.textContent = '', 6000);
+}
+
+// ── BOOT ──────────────────────────────────────
+buildScDots();
+loadProject(0, 'before');
+
+// Start showcase after a short delay (let page settle)
+setTimeout(() => {
+  if (!scPaused) startProgress(scProgDur, advanceShowcase);
+}, 1200);

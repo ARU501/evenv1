@@ -1,510 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pro Build Construction | Before & After</title>
-  <meta name="description" content="See the transformations — Pro Build Construction's portfolio of stunning before and after project photos." />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta name="description" content="Pro Build Construction — established today to build tomorrow. Southern California construction and landscaping."/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600&family=Special+Elite&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <a href="#" class="logo">PRO<span>BUILD</span></a>
-      <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#gallery">Our Work</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
-      </ul>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#hero">Home</a>
-      <a href="#gallery">Our Work</a>
+  <nav id="nav">
+    <a href="#" class="logo">PRO<span>BUILD</span></a>
+    <ul>
+      <li><a href="#showcase">Showcase</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="nav-pill">Free Quote</a></li>
+    </ul>
+    <button id="burger"><span></span><span></span><span></span></button>
+    <div id="drawer">
+      <a href="#showcase">Showcase</a>
+      <a href="#gallery">Gallery</a>
       <a href="#about">About</a>
-      <a href="#contact">Get a Quote</a>
+      <a href="#contact">Free Quote</a>
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- ══════════════════════════════
+       HERO
+  ══════════════════════════════ -->
   <section id="hero">
-    <div class="hero-bg">
-      <div class="hero-overlay"></div>
-      <img src="images/after1.jpg" alt="Completed landscaping project" class="hero-img" />
-    </div>
-    <div class="hero-content fade-up">
-      <p class="hero-eyebrow">Professional Construction &amp; Landscaping</p>
-      <h1>We Build<br /><span class="accent">Transformations</span></h1>
-      <p class="hero-sub">From bare dirt to breathtaking — see what we can do for your property.</p>
-      <div class="hero-btns">
-        <a href="#gallery" class="btn btn-primary">View Our Work</a>
-        <a href="#contact" class="btn btn-outline">Get a Free Quote</a>
+    <div class="hero-left">
+      <div class="hero-stamp">Southern California</div>
+      <h1>We document<br/>every <em>transformation.</em></h1>
+      <p class="hero-tagline">Established today to build tomorrow.</p>
+      <p class="hero-sub">Click any card to flip from before to after. Or sit back — the showcase above does it for you.</p>
+      <div class="hero-actions">
+        <a href="#showcase" class="btn-primary">Watch the Showcase</a>
+        <a href="#gallery" class="btn-ghost">Flip the Cards</a>
       </div>
     </div>
-    <div class="hero-scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="stats">
-    <div class="stats-inner">
-      <div class="stat fade-up">
-        <span class="stat-num">150<span class="plus">+</span></span>
-        <span class="stat-label">Projects Completed</span>
-      </div>
-      <div class="divider"></div>
-      <div class="stat fade-up" style="animation-delay:.1s">
-        <span class="stat-num">10<span class="plus">+</span></span>
-        <span class="stat-label">Years Experience</span>
-      </div>
-      <div class="divider"></div>
-      <div class="stat fade-up" style="animation-delay:.2s">
-        <span class="stat-num">100<span class="plus">%</span></span>
-        <span class="stat-label">Client Satisfaction</span>
-      </div>
-      <div class="divider"></div>
-      <div class="stat fade-up" style="animation-delay:.3s">
-        <span class="stat-num">5<span class="plus">★</span></span>
-        <span class="stat-label">Average Rating</span>
+    <div class="hero-right">
+      <!-- Stacked peek of mounted photos -->
+      <div class="hero-stack">
+        <div class="hs hs3"><img src="images/concrete-after.jpg" alt=""/></div>
+        <div class="hs hs2"><img src="images/gate-after.jpg" alt=""/></div>
+        <div class="hs hs1"><img src="images/patio-after.jpg" alt=""/></div>
+        <div class="hs-caption">Five transformations. Click to explore. →</div>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="sb-item"><strong class="counter" data-target="150">0</strong><span>Projects</span></div>
+    <div class="sb-div"></div>
+    <div class="sb-item"><strong class="counter" data-target="10">0</strong><span>Years</span></div>
+    <div class="sb-div"></div>
+    <div class="sb-item"><strong class="counter" data-target="5">0</strong><span>★ Rating</span></div>
+    <div class="sb-div"></div>
+    <div class="sb-item"><strong>100%</strong><span>Insured</span></div>
+  </div>
+
+  <!-- ══════════════════════════════
+       AUTO SHOWCASE CAROUSEL
+  ══════════════════════════════ -->
+  <section id="showcase">
+    <div class="showcase-header">
+      <div>
+        <p class="eyebrow">Auto Showcase</p>
+        <h2>Watch the flip.</h2>
+      </div>
+      <div class="showcase-controls">
+        <button id="prevProject" aria-label="Previous project">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button id="playPauseBtn" aria-label="Pause">
+          <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor" class="hidden"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+        <button id="nextProject" aria-label="Next project">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- SHOWCASE STAGE -->
+    <div class="showcase-stage">
+
+      <!-- Project label -->
+      <div class="sc-project-label">
+        <span class="sc-num" id="scNum">01</span>
+        <div>
+          <p class="sc-cat" id="scCat">Landscaping · Drainage</p>
+          <h3 class="sc-title" id="scTitle">Backyard Transformation</h3>
+        </div>
+        <span class="sc-phase" id="scPhase">BEFORE</span>
+      </div>
+
+      <!-- The auto-flip card -->
+      <div class="sc-card-wrap">
+        <div class="sc-card" id="scCard">
+          <div class="sc-front">
+            <div class="sc-mount">
+              <img id="scBeforeImg" src="images/before1.jpg" alt="Before"/>
+              <div class="sc-mount-cap">
+                <span class="stamp stamp-b">Before</span>
+                <span class="sc-cap-text" id="scBeforeCap">Bare compacted dirt — no drainage, no plants.</span>
+              </div>
+            </div>
+          </div>
+          <div class="sc-back">
+            <div class="sc-mount sc-mount-after">
+              <img id="scAfterImg" src="images/after1.jpg" alt="After"/>
+              <div class="sc-mount-cap">
+                <span class="stamp stamp-a">After</span>
+                <span class="sc-cap-text" id="scAfterCap">Sod, river rock creek bed, drought-tolerant plantings.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="sc-progress-wrap">
+        <div class="sc-progress-bar" id="scProgress"></div>
+      </div>
+
+      <!-- Dot indicators -->
+      <div class="sc-dots" id="scDots"></div>
+
+    </div><!-- /showcase-stage -->
+
+    <!-- DESC strip below -->
+    <div class="sc-desc-strip">
+      <p id="scDesc">Bare compacted dirt turned into a lush outdoor retreat — dry creek bed, river rock, sod, and drought-tolerant native plantings throughout.</p>
+      <a href="#contact" class="btn-primary btn-sm">Get This Done →</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       FLIP CARD GALLERY
+  ══════════════════════════════ -->
   <section id="gallery">
-    <div class="section-header fade-up">
-      <p class="section-eyebrow">Portfolio</p>
-      <h2>Before &amp; After</h2>
-      <p class="section-sub">Drag the slider to reveal the transformation</p>
+    <div class="gallery-head">
+      <div>
+        <p class="eyebrow">All Projects</p>
+        <h2>Click any card<br/>to flip.</h2>
+      </div>
+      <div class="gallery-actions">
+        <button class="flip-all-btn" id="flipAllBtn" onclick="flipAll()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+          Flip All Cards
+        </button>
+        <p class="flip-state" id="flipState">Showing: Before</p>
+      </div>
     </div>
 
-    <div class="filter-bar fade-up">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="landscaping">Landscaping</button>
-      <button class="filter-btn" data-filter="drainage">Drainage</button>
-      <button class="filter-btn" data-filter="hardscape">Hardscape</button>
-      <button class="filter-btn" data-filter="gate">Gates &amp; Fencing</button>
-      <button class="filter-btn" data-filter="flooring">Flooring</button>
-      <button class="filter-btn" data-filter="concrete">Concrete</button>
-      <button class="filter-btn" data-filter="outdoor">Outdoor Living</button>
-    </div>
+    <div class="card-grid">
 
-    <div class="gallery-grid">
-
-      <!-- PROJECT 1: Before / After slider -->
-      <div class="project-card fade-up" data-category="landscaping drainage" data-index="0">
-        <div class="slider-wrap" id="slider0">
-          <img class="img-after" src="images/after1.jpg" alt="After: Completed backyard landscaping" />
-          <div class="img-before-wrap">
-            <img class="img-before" src="images/before1.jpg" alt="Before: Bare dirt backyard" />
-          </div>
-          <div class="slider-handle" role="slider" aria-label="Before/After slider">
-            <div class="handle-line"></div>
-            <div class="handle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
+      <!-- CARD 1 — wide -->
+      <div class="fc fc-wide" data-idx="0" onclick="flipCard(this)">
+        <div class="fc-inner">
+          <div class="fc-front">
+            <div class="fc-mount">
+              <img src="images/before1.jpg" alt="Before: Bare dirt backyard"/>
+              <div class="fc-cap">
+                <span class="stamp stamp-b">Before</span>
+                <span class="fc-cap-text">Bare compacted dirt. No drainage, no plants.</span>
+              </div>
+            </div>
+            <div class="fc-meta">
+              <span class="fc-num">01</span>
+              <div>
+                <p class="fc-cat">Landscaping · Drainage</p>
+                <h3>Backyard Transformation</h3>
+              </div>
+              <div class="fc-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+              </div>
             </div>
           </div>
-          <span class="label-before">BEFORE</span>
-          <span class="label-after">AFTER</span>
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Landscaping · Drainage</span>
-          <h3>Backyard Transformation</h3>
-          <p>Full backyard redesign with dry creek bed drainage, sod installation, drought-tolerant plantings, and decorative river rock.</p>
-          <button class="btn btn-sm" onclick="openModal(0)">View Details</button>
+          <div class="fc-back">
+            <div class="fc-mount fc-mount-after">
+              <img src="images/after1.jpg" alt="After: Landscaped backyard"/>
+              <div class="fc-cap">
+                <span class="stamp stamp-a">After</span>
+                <span class="fc-cap-text">Sod, river rock creek bed, drought-tolerant plantings &amp; irrigation.</span>
+              </div>
+            </div>
+            <div class="fc-meta fc-meta-after">
+              <span class="fc-num fc-num-after">01</span>
+              <div>
+                <p class="fc-cat">Landscaping · Drainage</p>
+                <h3>Backyard Transformation</h3>
+              </div>
+              <a href="#contact" class="fc-cta" onclick="event.stopPropagation()">Quote →</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- PROJECT 2: During / After slider -->
-      <div class="project-card fade-up" data-category="landscaping hardscape" data-index="1" style="animation-delay:.1s">
-        <div class="slider-wrap" id="slider1">
-          <img class="img-after" src="images/after1.jpg" alt="After: Finished yard" />
-          <div class="img-before-wrap">
-            <img class="img-before" src="images/during1.jpg" alt="During: Sod being laid" />
-          </div>
-          <div class="slider-handle" role="slider" aria-label="Before/After slider">
-            <div class="handle-line"></div>
-            <div class="handle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
+      <!-- CARD 2 -->
+      <div class="fc" data-idx="1" onclick="flipCard(this)">
+        <div class="fc-inner">
+          <div class="fc-front">
+            <div class="fc-mount">
+              <img src="images/gate-before.jpg" alt="Before: Gate frame"/>
+              <div class="fc-cap"><span class="stamp stamp-b">Before</span><span class="fc-cap-text">Raw steel frame &amp; redwood posts set.</span></div>
+            </div>
+            <div class="fc-meta">
+              <span class="fc-num">02</span>
+              <div><p class="fc-cat">Gates · Fencing</p><h3>Arched Double Gate</h3></div>
+              <div class="fc-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg></div>
             </div>
           </div>
-          <span class="label-before">DURING</span>
-          <span class="label-after">AFTER</span>
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Sod · River Rock</span>
-          <h3>Sod &amp; Rock Installation</h3>
-          <p>Sod layout with decorative river rock dry creek bed — progress to completion on a full backyard overhaul.</p>
-          <button class="btn btn-sm" onclick="openModal(1)">View Details</button>
+          <div class="fc-back">
+            <div class="fc-mount fc-mount-after">
+              <img src="images/gate-after.jpg" alt="After: Finished gate"/>
+              <div class="fc-cap"><span class="stamp stamp-a">After</span><span class="fc-cap-text">Painted arch, solar lanterns, decorative bolt hardware.</span></div>
+            </div>
+            <div class="fc-meta fc-meta-after">
+              <span class="fc-num fc-num-after">02</span>
+              <div><p class="fc-cat">Gates · Fencing</p><h3>Arched Double Gate</h3></div>
+              <a href="#contact" class="fc-cta" onclick="event.stopPropagation()">Quote →</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- PROJECT 4: Gate Before / After -->
-      <div class="project-card fade-up" data-category="fence gate" data-index="3" style="animation-delay:.15s">
-        <div class="slider-wrap" id="slider3">
-          <img class="img-after" src="images/gate-after.jpg" alt="After: Finished arched gate" />
-          <div class="img-before-wrap">
-            <img class="img-before" src="images/gate-before.jpg" alt="Before: Bare metal gate frame" />
-          </div>
-          <div class="slider-handle" role="slider" aria-label="Before/After slider">
-            <div class="handle-line"></div>
-            <div class="handle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      <!-- CARD 3 -->
+      <div class="fc" data-idx="2" onclick="flipCard(this)">
+        <div class="fc-inner">
+          <div class="fc-front">
+            <div class="fc-mount">
+              <img src="images/kitchen-before.jpg" alt="Before: Old tile"/>
+              <div class="fc-cap"><span class="stamp stamp-b">Before</span><span class="fc-cap-text">Dated octagon-pattern vinyl tile throughout.</span></div>
+            </div>
+            <div class="fc-meta">
+              <span class="fc-num">03</span>
+              <div><p class="fc-cat">Flooring · Interior</p><h3>Kitchen Floor</h3></div>
+              <div class="fc-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg></div>
             </div>
           </div>
-          <span class="label-before">BEFORE</span>
-          <span class="label-after">AFTER</span>
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Fence · Gate</span>
-          <h3>Arched Double Gate</h3>
-          <p>Steel frame to stunning finished gate — custom arched double gate with decorative hardware, solar lanterns, and painted finish.</p>
-          <button class="btn btn-sm" onclick="openModal(3)">View Details</button>
+          <div class="fc-back">
+            <div class="fc-mount fc-mount-after">
+              <img src="images/kitchen-after.jpg" alt="After: Hardwood"/>
+              <div class="fc-cap"><span class="stamp stamp-a">After</span><span class="fc-cap-text">Wide-plank hardwood — warm, modern, timeless.</span></div>
+            </div>
+            <div class="fc-meta fc-meta-after">
+              <span class="fc-num fc-num-after">03</span>
+              <div><p class="fc-cat">Flooring · Interior</p><h3>Kitchen Floor</h3></div>
+              <a href="#contact" class="fc-cta" onclick="event.stopPropagation()">Quote →</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- PROJECT 5: Gate During / After -->
-      <div class="project-card fade-up" data-category="fence gate" data-index="4" style="animation-delay:.25s">
-        <div class="slider-wrap" id="slider4">
-          <img class="img-after" src="images/gate-after.jpg" alt="After: Finished gate with hardware" />
-          <div class="img-before-wrap">
-            <img class="img-before" src="images/gate-during.jpg" alt="During: Panels installed" />
-          </div>
-          <div class="slider-handle" role="slider" aria-label="Before/After slider">
-            <div class="handle-line"></div>
-            <div class="handle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      <!-- CARD 4 — tall -->
+      <div class="fc fc-tall" data-idx="3" onclick="flipCard(this)">
+        <div class="fc-inner">
+          <div class="fc-front">
+            <div class="fc-mount">
+              <img src="images/concrete-before.jpg" alt="Before: Dirt"/>
+              <div class="fc-cap"><span class="stamp stamp-b">Before</span><span class="fc-cap-text">Uneven grass &amp; dirt. No usable surface.</span></div>
+            </div>
+            <div class="fc-meta">
+              <span class="fc-num">04</span>
+              <div><p class="fc-cat">Concrete · Hardscape</p><h3>Concrete Slab</h3></div>
+              <div class="fc-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg></div>
             </div>
           </div>
-          <span class="label-before">DURING</span>
-          <span class="label-after">AFTER</span>
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Fence · Gate</span>
-          <h3>Gate — Final Finish</h3>
-          <p>From bare white panels to the completed look — paint, decorative bolt accents, solar lantern hardware, and a polished arched profile.</p>
-          <button class="btn btn-sm" onclick="openModal(4)">View Details</button>
+          <div class="fc-back">
+            <div class="fc-mount fc-mount-after">
+              <img src="images/concrete-after.jpg" alt="After: Smooth slab"/>
+              <div class="fc-cap"><span class="stamp stamp-a">After</span><span class="fc-cap-text">Smooth trowel-finished slab. Graded, formed &amp; poured in one day.</span></div>
+            </div>
+            <div class="fc-meta fc-meta-after">
+              <span class="fc-num fc-num-after">04</span>
+              <div><p class="fc-cat">Concrete · Hardscape</p><h3>Concrete Slab</h3></div>
+              <a href="#contact" class="fc-cta" onclick="event.stopPropagation()">Quote →</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- PROJECT 6: Kitchen Flooring Before / After -->
-      <div class="project-card fade-up" data-category="flooring interior" data-index="5" style="animation-delay:.3s">
-        <div class="slider-wrap" id="slider5">
-          <img class="img-after" src="images/kitchen-after.jpg" alt="After: Hardwood floor installed" />
-          <div class="img-before-wrap">
-            <img class="img-before" src="images/kitchen-before.jpg" alt="Before: Old octagon tile floor" />
-          </div>
-          <div class="slider-handle" role="slider" aria-label="Before/After slider">
-            <div class="handle-line"></div>
-            <div class="handle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      <!-- CARD 5 — wide -->
+      <div class="fc fc-wide" data-idx="4" onclick="flipCard(this)">
+        <div class="fc-inner">
+          <div class="fc-front">
+            <div class="fc-mount">
+              <img src="images/patio-before.jpg" alt="Before: Old pavers"/>
+              <div class="fc-cap"><span class="stamp stamp-b">Before</span><span class="fc-cap-text">Cracked paver patio. No kitchen, no hot tub pad.</span></div>
+            </div>
+            <div class="fc-meta">
+              <span class="fc-num">05</span>
+              <div><p class="fc-cat">Concrete · Outdoor Living</p><h3>Patio &amp; Outdoor Kitchen</h3></div>
+              <div class="fc-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg></div>
             </div>
           </div>
-          <span class="label-before">BEFORE</span>
-          <span class="label-after">AFTER</span>
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Flooring · Interior</span>
-          <h3>Kitchen Floor Replacement</h3>
-          <p>Outdated octagon vinyl tile swapped out for beautiful hardwood flooring — a total kitchen floor transformation that modernizes the entire space.</p>
-          <button class="btn btn-sm" onclick="openModal(5)">View Details</button>
+          <div class="fc-back">
+            <div class="fc-mount fc-mount-after">
+              <img src="images/patio-after.jpg" alt="After: New patio and kitchen"/>
+              <div class="fc-cap"><span class="stamp stamp-a">After</span><span class="fc-cap-text">New concrete, custom BBQ island, built-in grill, fridge &amp; hot tub pad.</span></div>
+            </div>
+            <div class="fc-meta fc-meta-after">
+              <span class="fc-num fc-num-after">05</span>
+              <div><p class="fc-cat">Concrete · Outdoor Living</p><h3>Patio &amp; Outdoor Kitchen</h3></div>
+              <a href="#contact" class="fc-cta" onclick="event.stopPropagation()">Quote →</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- PROJECT 7: Concrete Before / After -->
-      <div class="project-card fade-up" data-category="concrete hardscape" data-index="6" style="animation-delay:.1s">
-        <div class="slider-wrap" id="slider6">
-          <img class="img-after" src="images/concrete-after.jpg" alt="After: Finished concrete slab" />
-          <div class="img-before-wrap">
-            <img class="img-before" src="images/concrete-before.jpg" alt="Before: Grass and dirt area" />
-          </div>
-          <div class="slider-handle" role="slider" aria-label="Before/After slider">
-            <div class="handle-line"></div>
-            <div class="handle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </div>
-          </div>
-          <span class="label-before">BEFORE</span>
-          <span class="label-after">AFTER</span>
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Concrete · Hardscape</span>
-          <h3>Concrete Slab Pour</h3>
-          <p>Overgrown grass and dirt transformed into a smooth, level concrete slab — perfect for a shed pad, outdoor workspace, or patio foundation.</p>
-          <button class="btn btn-sm" onclick="openModal(6)">View Details</button>
-        </div>
-      </div>
-
-      <!-- PROJECT 8: Concrete During / After -->
-      <div class="project-card fade-up" data-category="concrete hardscape" data-index="7" style="animation-delay:.2s">
-        <div class="slider-wrap" id="slider7">
-          <img class="img-after" src="images/concrete-after.jpg" alt="After: Smooth finished slab" />
-          <div class="img-before-wrap">
-            <img class="img-before" src="images/concrete-during.jpg" alt="During: Forms set, dirt prepped" />
-          </div>
-          <div class="slider-handle" role="slider" aria-label="Before/After slider">
-            <div class="handle-line"></div>
-            <div class="handle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </div>
-          </div>
-          <span class="label-before">DURING</span>
-          <span class="label-after">AFTER</span>
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Concrete · Pour</span>
-          <h3>Slab — Forms to Finish</h3>
-          <p>From graded dirt with wood forms set to a freshly poured and trowel-finished concrete slab — the transformation in a single pour.</p>
-          <button class="btn btn-sm" onclick="openModal(7)">View Details</button>
-        </div>
-      </div>
-
-      <!-- PROJECT 9: Patio Before / After -->
-      <div class="project-card fade-up" data-category="concrete outdoor hardscape" data-index="8" style="animation-delay:.05s">
-        <div class="slider-wrap" id="slider8">
-          <img class="img-after" src="images/patio-after.jpg" alt="After: New concrete patio with outdoor kitchen" />
-          <div class="img-before-wrap">
-            <img class="img-before" src="images/patio-before.jpg" alt="Before: Old paver patio and fire pit" />
-          </div>
-          <div class="slider-handle" role="slider" aria-label="Before/After slider">
-            <div class="handle-line"></div>
-            <div class="handle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </div>
-          </div>
-          <span class="label-before">BEFORE</span>
-          <span class="label-after">AFTER</span>
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Concrete · Outdoor Living</span>
-          <h3>Patio &amp; Outdoor Kitchen</h3>
-          <p>Old paver patio and fire pit removed and replaced with a full concrete pour, custom outdoor kitchen island, built-in BBQ, and hot tub pad.</p>
-          <button class="btn btn-sm" onclick="openModal(8)">View Details</button>
-        </div>
-      </div>
-
-      <!-- PROJECT 10: Patio During (forms) / After -->
-      <div class="project-card fade-up" data-category="concrete outdoor" data-index="9" style="animation-delay:.1s">
-        <div class="slider-wrap" id="slider9">
-          <img class="img-after" src="images/patio-after.jpg" alt="After: Finished patio and outdoor kitchen" />
-          <div class="img-before-wrap">
-            <img class="img-before" src="images/patio-during1.jpg" alt="During: Forms set, pavers demolished" />
-          </div>
-          <div class="slider-handle" role="slider" aria-label="Before/After slider">
-            <div class="handle-line"></div>
-            <div class="handle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </div>
-          </div>
-          <span class="label-before">DURING</span>
-          <span class="label-after">AFTER</span>
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Concrete · Patio</span>
-          <h3>Demo to Done</h3>
-          <p>Pavers demolished, ground graded, and steel forms set — then a smooth large-format concrete patio poured and finished to perfection.</p>
-          <button class="btn btn-sm" onclick="openModal(9)">View Details</button>
-        </div>
-      </div>
-
-      <!-- PROJECT 11: Patio Layout / After -->
-      <div class="project-card fade-up" data-category="concrete outdoor" data-index="10" style="animation-delay:.15s">
-        <div class="slider-wrap" id="slider10">
-          <img class="img-after" src="images/patio-after.jpg" alt="After: Completed outdoor living space" />
-          <div class="img-before-wrap">
-            <img class="img-before" src="images/patio-during2.jpg" alt="During: Layout spray-painted on dirt" />
-          </div>
-          <div class="slider-handle" role="slider" aria-label="Before/After slider">
-            <div class="handle-line"></div>
-            <div class="handle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </div>
-          </div>
-          <span class="label-before">LAYOUT</span>
-          <span class="label-after">AFTER</span>
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Outdoor Kitchen · BBQ Island</span>
-          <h3>Plan to Reality</h3>
-          <p>From spray-painted layout markings for gas lines, BBQ island, and outlets in the dirt — to a fully built outdoor kitchen and entertainment space.</p>
-          <button class="btn btn-sm" onclick="openModal(10)">View Details</button>
-        </div>
-      </div>
-
-      <!-- PROJECT 3: Before / During -->
-      <div class="project-card fade-up" data-category="drainage hardscape" data-index="2" style="animation-delay:.2s">
-        <div class="slider-wrap" id="slider2">
-          <img class="img-after" src="images/during1.jpg" alt="During: Creek bed and sod" />
-          <div class="img-before-wrap">
-            <img class="img-before" src="images/before1.jpg" alt="Before: Empty lot" />
-          </div>
-          <div class="slider-handle" role="slider" aria-label="Before/After slider">
-            <div class="handle-line"></div>
-            <div class="handle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </div>
-          <span class="label-before">BEFORE</span>
-          <span class="label-after">DURING</span>
-        </div>
-        <div class="card-info">
-          <span class="card-tag">Drainage · Hardscape</span>
-          <h3>Creek Bed Drainage</h3>
-          <p>Bare dirt yard graded and shaped for natural drainage — river rock creek bed channeling water with style.</p>
-          <button class="btn btn-sm" onclick="openModal(2)">View Details</button>
-        </div>
-      </div>
-
-    </div>
+    </div><!-- /card-grid -->
   </section>
 
-  <!-- ABOUT -->
+  <!-- ══════════════════════════════
+       ABOUT
+  ══════════════════════════════ -->
   <section id="about">
     <div class="about-inner">
-      <div class="about-img-wrap fade-up">
-        <img src="images/after1.jpg" alt="Completed project" />
-        <div class="about-badge">Est. 2014</div>
+      <div class="about-copy reveal">
+        <p class="eyebrow">About Pro Build</p>
+        <h2>Established today<br/>to build <em>tomorrow.</em></h2>
+        <p>Family-owned. Southern California based. We've spent years turning properties people settle for into spaces they love. Every project is photographed start to finish — you'll always know exactly what you're getting.</p>
+        <div class="about-pills">
+          <span>Licensed &amp; Insured</span>
+          <span>Free Estimates</span>
+          <span>No Subcontractors</span>
+          <span>Drought-Tolerant Specialists</span>
+        </div>
+        <a href="#contact" class="btn-primary">Start Your Project →</a>
       </div>
-      <div class="about-text fade-up" style="animation-delay:.15s">
-        <p class="section-eyebrow">About Us</p>
-        <h2>Built on Quality,<br />Driven by Results</h2>
-        <p>We're a Southern California construction and landscaping company dedicated to transforming outdoor spaces. From drainage solutions to full landscape redesigns, we bring expertise, honesty, and craftsmanship to every project.</p>
-        <ul class="about-list">
-          <li>✦ Licensed &amp; Insured</li>
-          <li>✦ Free Estimates</li>
-          <li>✦ Drought-Tolerant Specialists</li>
-          <li>✦ Family-Owned Business</li>
-        </ul>
-        <a href="#contact" class="btn btn-primary">Work With Us</a>
+      <div class="about-visual reveal">
+        <!-- Scattered mounted photos, even5 style -->
+        <div class="av-photo av-p1"><img src="images/patio-after.jpg" alt=""/><span class="av-cap">Patio · After</span></div>
+        <div class="av-photo av-p2"><img src="images/gate-after.jpg" alt=""/><span class="av-cap">Gate · After</span></div>
+        <div class="av-photo av-p3"><img src="images/kitchen-after.jpg" alt=""/><span class="av-cap">Kitchen · After</span></div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- ══════════════════════════════
+       CONTACT
+  ══════════════════════════════ -->
   <section id="contact">
     <div class="contact-inner">
-      <div class="contact-info fade-up">
-        <p class="section-eyebrow">Contact</p>
-        <h2>Request a<br />Free Quote</h2>
-        <div class="contact-details">
-          <div class="contact-item">
-            <span class="ci-icon">📍</span>
-            <span>Southern California</span>
-          </div>
-          <div class="contact-item">
-            <span class="ci-icon">📞</span>
-            <span>(555) 000-0000</span>
-          </div>
-          <div class="contact-item">
-            <span class="ci-icon">✉️</span>
-            <span>info@probuildco.com</span>
-          </div>
-          <div class="contact-item">
-            <span class="ci-icon">🕐</span>
-            <span>Mon–Sat: 7am – 6pm</span>
-          </div>
-        </div>
+      <div class="contact-left reveal">
+        <p class="eyebrow">Get In Touch</p>
+        <h2>Let's build<br/><em>something great.</em></h2>
+        <p>Free estimate, 24-hour response. No pressure.</p>
+        <ul class="clist">
+          <li>📍 Southern California</li>
+          <li>📞 (555) 000-0000</li>
+          <li>✉️ info@probuildco.com</li>
+          <li>🕐 Mon – Sat, 7am – 6pm</li>
+        </ul>
       </div>
-      <form class="contact-form fade-up" style="animation-delay:.15s" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" placeholder="Your full name" required />
-          </div>
-          <div class="form-group">
-            <label>Phone</label>
-            <input type="tel" placeholder="(555) 000-0000" />
-          </div>
+      <form class="cform reveal" onsubmit="submitForm(event)">
+        <div class="crow">
+          <div class="cf"><label>Name</label><input type="text" placeholder="Your name" required/></div>
+          <div class="cf"><label>Phone</label><input type="tel" placeholder="(555) 000-0000"/></div>
         </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="you@example.com" required />
-        </div>
-        <div class="form-group">
+        <div class="cf"><label>Email</label><input type="email" placeholder="you@email.com" required/></div>
+        <div class="cf">
           <label>Project Type</label>
           <select>
-            <option value="">Select a project type…</option>
-            <option>Landscaping</option>
-            <option>Drainage / Creek Bed</option>
-            <option>Sod Installation</option>
-            <option>Hardscape / Concrete</option>
-            <option>Full Yard Renovation</option>
-            <option>Other</option>
+            <option value="">Select a project…</option>
+            <option>Landscaping</option><option>Drainage / Creek Bed</option>
+            <option>Sod Installation</option><option>Concrete / Hardscape</option>
+            <option>Outdoor Kitchen / BBQ</option><option>Gates &amp; Fencing</option>
+            <option>Interior Flooring</option><option>Full Renovation</option><option>Other</option>
           </select>
         </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea rows="4" placeholder="Tell us about your project…"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Upload Photos (optional)</label>
-          <input type="file" accept="image/*" multiple class="file-input" />
-        </div>
-        <button type="submit" class="btn btn-primary btn-full">Send Message →</button>
-        <p class="form-note" id="formMsg"></p>
+        <div class="cf"><label>Message</label><textarea rows="4" placeholder="Tell us about your project…"></textarea></div>
+        <div class="cf"><label>Upload Photos (optional)</label><input type="file" accept="image/*" multiple/></div>
+        <button type="submit">Send Message →</button>
+        <p class="cmsg" id="cmsg"></p>
       </form>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-inner">
-      <a href="#" class="logo">PRO<span>BUILD</span></a>
-      <p>© 2024 Pro Build Construction. All rights reserved.</p>
-      <div class="social-links">
-        <a href="#" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-        </a>
-        <a href="#" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-        </a>
-        <a href="#" aria-label="Houzz">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l8 4V9l-8 4-8-4v-.82l8-4zM4 10.09l8 4 8-4v7.73l-8 4-8-4v-7.73z"/></svg>
-        </a>
-      </div>
+    <a href="#" class="logo">PRO<span>BUILD</span></a>
+    <p class="footer-tagline">Established today to build tomorrow.</p>
+    <p>© 2024 Pro Build Construction · Southern California</p>
+    <div class="f-socials">
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a>
     </div>
   </footer>
-
-  <!-- MODAL -->
-  <div id="modal" class="modal" onclick="closeModal(event)">
-    <div class="modal-inner">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-slider-wrap" id="modalSliderWrap"></div>
-      <div class="modal-info" id="modalInfo"></div>
-    </div>
-  </div>
 
   <script src="main.js"></script>
 </body>
